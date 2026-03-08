@@ -51,3 +51,21 @@ Then open:
 3. Each range is trimmed and normalized (H.264/AAC, consistent resolution/fps/audio).
 4. Server concatenates segments (`-c copy` first, re-encode fallback).
 5. You get a download link for merged `.mp4`.
+
+## Deploy backend on Render with Docker + FFmpeg
+
+1. Push this repo to GitHub.
+2. In Render, click `New +` -> `Web Service`.
+3. Select your repo.
+4. For runtime, choose `Docker`.
+5. Render will auto-detect [Dockerfile](/y:/video-merger/Dockerfile) and build an image with FFmpeg.
+6. Deploy.
+
+After deploy, open Render shell logs and verify:
+
+```bash
+ffmpeg -version
+ffprobe -version
+```
+
+If you use Blueprint deploy, Render can read [render.yaml](/y:/video-merger/render.yaml) directly.
